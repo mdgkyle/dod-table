@@ -1,0 +1,24 @@
+{
+  "name": "Date over Date",
+  "organization": "MyOrg",
+  "description": "My first visualization package.",
+  "logoUrl": "https://logo",
+  "organizationUrl": "https://url",
+  "supportUrl": "https://url",
+  "privacyPolicyUrl": "https://url",
+  "termsOfServiceUrl": "https://url",
+  "packageUrl": "https://url",
+  "devMode": true,
+  "components": [
+    {
+      "name": "DoD",
+      "description": "My first Community Visualization",
+      "iconUrl": "https://url",
+      "resource": {
+        "js": "gs://dod-table-prod/index.js",
+        "config": "gs://dod-table-prod/index.json",
+        "css": "gs://dod-table-prod/index.css"
+      }
+    }
+  ]
+}
