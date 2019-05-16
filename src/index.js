@@ -6,28 +6,28 @@ const local = require('./localMessage.js');
 
 // change this to 'true' for local development
 // change this to 'false' before deploying
-export const LOCAL = true;
+export const LOCAL = false;
 
 function drawViz(data) {
+  let database = data.tables.DEFAULT
+  let metrics = []
+  let rowNames = []
+  let obj = { dates: [''] }
+
+  // remove the svg if it already exists
+  if (document.getElementById("myTable")) {
+    let oldTable = document.getElementById("myTable").remove();
+  }
+
   // create and add the canvas
   var canvasElement = document.createElement('canvas');
   var tableElement = document.createElement('table');
   tableElement.id = "myTable"
   var ctx = canvasElement.getContext('2d');
   canvasElement.id = 'myViz';
-  document.body.appendChild(canvasElement);
   document.body.appendChild(tableElement);
-
   var table = document.getElementById("myTable");
-
-  let database = data.tables.DEFAULT
-  let metrics = []
-  let rowNames = []
-  let obj = { dates: [''] }
-
-  console.log(data);
   
-
   data.fields.metricID.forEach(function (metric) {
     rowNames.push(metric['name'])
     obj[metric['name']] = [metric['name']]
@@ -74,11 +74,7 @@ function drawViz(data) {
 
 // renders locally
 if (LOCAL) {
-  console.log(local);
-  
   drawViz(local.message)
 } else {
-  console.log("I exist!");
-  
   dscc.subscribeToData(drawViz, { transform: dscc.objectTransform});
 }
